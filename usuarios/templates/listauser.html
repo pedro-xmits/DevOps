@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Usuários{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <h1>Lista de Usuários</h1>
+    <a id="add-link" href="cadastro/">
+        <div class="col-2 add-div">
+            <i class="fa-solid fa-plus"></i>Adicionar usuário
+        </div>
+    </a>
+    <div class="col-9 search-div">
+        <input class="form-control" type="text" id="search" name="search"
+            placeholder="Digite o nome do usuário para buscar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <ul class="lista-user">
+        {% for user in users %}
+        <li class="user-item">
+            <span><a href="usuarios/{{user.id}}">{{user.username}}</a></span>
+            <a href="deletar/{{user.id}}"><span><i class="fa-solid fa-trash"></i></span></a>
+            <a href="editar/{{user.id}}"><span><i class="fa-solid fa-pen-to-square"></i></span></a>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <span class="step-links">
+            {% if users.has_previous %}
+                <a href="?page={{users.previous_page_number}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+            {% endif %}
+
+            <span class="current">
+                {{users.number}} de {{ users.paginator.num_pages }}
+            </span>
+
+            {% if users.has_next %}
+                <a href="?page={{users.next_page_number}}"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

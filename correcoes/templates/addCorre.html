@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <div class="content-principal">
+        <h4>Nova correção:</h4>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.usuario.label_tag }}
+            {{ form.usuario }}
+            <br>
+            {{ form.gasto.label_tag }}
+            {{ form.gasto }}
+            <br>
+            {{ form.descricao.label_tag }}
+            {{ form.descricao }}
+            <br>
+            <input type="submit" value="Enviar">
+            <input type="submit" value="Finalizar">
+            <span><a href="/correcoes"></a></span>
+        </form>
+    </div>
+</div>
+{% endblock %}

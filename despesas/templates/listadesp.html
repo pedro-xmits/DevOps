@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Despesas registradas{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <h1>Lista de Despesas</h1>
+    <a id="add-link" href="addDesp/">
+        <div class="col-2 add-div">
+            <i class="fa-solid fa-plus"></i>Adicionar despesa
+        </div>
+    </a>
+    <div class="col-9 search-div">
+        <input class="form-control" type="text" id="search" name="search" placeholder="Digite o nome da despesa para buscar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <ul class="lista-desp">
+        {% for despesa in despesas %}
+        <li class="desp-item">
+            <span><a href="despesa/{{despesa.id}}">{{despesa.nome}}</a></span>
+            <a href="deletar/{{despesa.id}}"><span><i class="fa-solid fa-trash"></i></span></a>
+            <a href="editar/{{despesa.id}}"><span><i class="fa-solid fa-pen-to-square"></i></span></a>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <span class="step-links">
+            {% if despesas.has_previous %}
+                <a href="?page={{depesas.previous_page_number}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+            {% endif %}
+
+            <span class="current">
+                {{despesas.number}} de {{ despesas.paginator.num_pages }}
+            </span>
+
+            {% if despesas.has_next %}
+                <a href="?page={{despesas.next_page_number}}"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

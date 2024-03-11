@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Entrar no sistema{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card auth-card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Entrar no sistema</h4>
+
+                <form method="post">
+                    <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+                        <input type="text" placeholder="Username.." name="username" class="input-user">
+                        <br>
+                        <input type="password" placeholder="Senha.." name="password" class="input-pass">
+                        <br>
+                        <input type="submit" vlaue="Entrar">
+                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

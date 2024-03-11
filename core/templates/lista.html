@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Gastos lançados{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <h1>Lista de Gastos</h1>
+    <a id="add-link" href="addgasto/">
+        <div class="col-2 add-div">
+            <i class="fa-solid fa-plus"></i>Adicionar gasto
+        </div>
+    </a>
+    <div class="col-9 search-div">
+        <input class="form-control" type="text" id="search" name="search" placeholder="Digite o nome do gasto para buscar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <ul class="lista-gasto">
+        {% for gasto in gastos %}
+        <li class="gasto-item">
+            <span><a href="gasto/{{gasto.id}}">{{gasto.nome}}</a></span>
+            <a href="deletar/{{gasto.id}}"><span><i class="fa-solid fa-trash"></i></span></a>
+            <a href="editar/{{gasto.id}}"><span><i class="fa-solid fa-pen-to-square"></i></span></a>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <span class="step-links">
+            {% if gastos.has_previous %}
+                <a href="?page={{gastos.previous_page_number}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+            {% endif %}
+
+            <span class="current">
+                {{gastos.number}} de {{ gastos.paginator.num_pages }}
+            </span>
+
+            {% if gastos.has_next %}
+                <a href="?page={{gastos.next_page_number}}"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

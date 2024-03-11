@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{despesa.nome}}{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <p>Nome: {{despesa.nome}}</p>
+    <p>Descrição: {{despesa.descricao}}</p>
+</div>
+
+{% endblock %}
